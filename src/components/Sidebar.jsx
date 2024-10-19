@@ -1,7 +1,15 @@
-import { categorias } from "../data/categorias";
-import Categoria from "./Categoria"; // Importación corregida
+//import { categorias } from "../data/categorias";
+import Categoria from "./Categoria"; 
+import useQuiosco from "../hooks/useQuiosco";
 
 export default function Sidebar() {
+
+    const {categorias} = useQuiosco();
+
+    console.log( categorias );
+
+
+
   return (
     <aside className="md:w-72">
       <div className="p-4">
