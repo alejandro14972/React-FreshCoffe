@@ -6,7 +6,7 @@ export default function Sidebar() {
 
     const {categorias} = useQuiosco();
 
-    console.log( categorias );
+   // console.log( categorias );
 
 
 

@@ -6,12 +6,10 @@ const quioscoContext = createContext();
 const QuioscoProvider = ({ children }) => {
 
     const [categorias, setCategoria] = useState(categoriasDB);
-
     const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
     const [modal, setModal] = useState(false);
-
-    const[producto, setproducto]= useState({})
-    const[pedido, setpedido]= useState([])
+    const [producto, setproducto] = useState({})
+    const [pedido, setpedido] = useState([])
 
     const handleClickCategoria = id => {
         const categoria = categorias.filter(categoria => categoria.id === id)[0]
@@ -19,12 +17,24 @@ const QuioscoProvider = ({ children }) => {
         setCategoriaActual(categoria);
     }
 
-    const handleClickModal = () =>{
+    const handleClickModal = () => {
         setModal(!modal)
     }
 
-    const handleSetProducto = producto =>{
+    const handleSetProducto = producto => {
         setproducto(producto)
+    }
+
+
+
+    const handleAgregarPedido = ({ categoria_id, imagen, ...producto }) => { //elimina del objeto la categoria y la imagen
+    
+        if (pedido.some(pedidoState => pedidoState.id === producto.id)) {
+            const edicionProducto = pedido.map(pedidoState => pedidoState.id === producto.id ? producto: pedidoState)
+            setpedido(edicionProducto)
+        } else {
+            setpedido([...pedido, producto])
+        }
     }
 
 
@@ -38,7 +48,9 @@ const QuioscoProvider = ({ children }) => {
                 handleClickModal,
                 producto,
                 handleSetProducto,
-                pedido
+                pedido,
+                handleAgregarPedido,
+                setpedido,
             }}
         >
             {children}

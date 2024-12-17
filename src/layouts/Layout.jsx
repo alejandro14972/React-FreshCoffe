@@ -24,7 +24,7 @@ export default function Layout() {
 
   const { modal, handleClickModal } = useQuiosco();
 
-  console.log(modal);
+  //console.log(modal);
 
   return (
     <>
