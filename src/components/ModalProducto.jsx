@@ -15,12 +15,19 @@ export default function ModalProducto() {
 
 //funcion para coger y actualizar la cantidad del producto en el modal
   useEffect(()=>{
-    if(pedido.some(pedidoState => pedidoState.id=== producto.id)){
-        const edicionProducto = pedido.filter(pedidoState =>pedidoState.id === producto.id)[0]
 
+    const modalExiste = pedido.some(pedidoState => pedidoState.id=== producto.id)
+
+    if(modalExiste){
+        /* const edicionProducto = pedido.filter(pedidoState =>pedidoState.id === producto.id)[0] */
+        for (let i = 0; i < pedido.length; i++) {
+            if (pedido[i].id === producto.id) {
+                setCantidad(pedido[i].cantidad)
+                }
+        }
         //devuleve el objeto y seteamos la cantidad
         
-        setCantidad(edicionProducto.cantidad)
+        //setCantidad(edicionProducto.cantidad)
         setEditar(true)
     }
   },[pedido])
