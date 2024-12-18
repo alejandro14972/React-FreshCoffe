@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 import { categorias as categoriasDB } from "../data/categorias";
 
 const quioscoContext = createContext();
@@ -28,12 +29,26 @@ const QuioscoProvider = ({ children }) => {
 
 
     const handleAgregarPedido = ({ categoria_id, imagen, ...producto }) => { //elimina del objeto la categoria y la imagen
-    
-        if (pedido.some(pedidoState => pedidoState.id === producto.id)) {
-            const edicionProducto = pedido.map(pedidoState => pedidoState.id === producto.id ? producto: pedidoState)
-            setpedido(edicionProducto)
+
+        const itemExisteEnElPedido = pedido.some(ped => ped.id === producto.id)
+
+        //some y find es igual
+        if (itemExisteEnElPedido) {
+            /*  const edicionProducto = pedido.map(pedidoState => pedidoState.id === producto.id ? producto : pedidoState)
+             setpedido(edicionProducto) */
+
+            const nuevoPedido = [...pedido]; //es un array
+            for (let i = 0; i < pedido.length; i++) {
+                if (pedido[i].id === producto.id) {
+                    nuevoPedido[i] = { ...producto }
+                    break;
+                }
+            }
+            setpedido(nuevoPedido);
+            toast.success("Guardado correctamente")
         } else {
             setpedido([...pedido, producto])
+            toast.success("agregado al pedido")
         }
     }
 
