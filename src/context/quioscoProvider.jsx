@@ -28,7 +28,7 @@ const QuioscoProvider = ({ children }) => {
 
 
 
-    const handleAgregarPedido = ({ categoria_id, imagen, ...producto }) => { //elimina del objeto la categoria y la imagen
+    const handleAgregarPedido = ({ categoria_id, ...producto }) => { //elimina del objeto la categoria y la imagen
 
         const itemExisteEnElPedido = pedido.some(ped => ped.id === producto.id)
 
@@ -52,6 +52,18 @@ const QuioscoProvider = ({ children }) => {
         }
     }
 
+    const handleClickEditarCantidad = id => {
+        const productoSeleccionado = pedido.filter(p => p.id === id)[0];
+        setproducto(productoSeleccionado)
+        setModal(!modal)
+    }
+
+    const eliminarProductoPedido = id => {
+        const productoSeleccionado = pedido.filter(p => p.id !== id);
+        setpedido(productoSeleccionado)
+        toast.success("Eliminado")
+    }
+
 
     return (
         <quioscoContext.Provider
@@ -66,6 +78,8 @@ const QuioscoProvider = ({ children }) => {
                 pedido,
                 handleAgregarPedido,
                 setpedido,
+                handleClickEditarCantidad,
+                eliminarProductoPedido
             }}
         >
             {children}
