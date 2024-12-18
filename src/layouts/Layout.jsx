@@ -38,8 +38,6 @@ export default function Layout() {
         <Resumen />
       </div>
 
-
-
         <Modal isOpen={modal} style={customStyles}>
             <ModalProducto
               handleClickModal={handleClickModal}

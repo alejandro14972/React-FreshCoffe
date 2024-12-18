@@ -11,7 +11,7 @@ export default function ResumenProducto({producto}) {
     <div className="shadow space-y-1 p-4 bg-white">
       <div className="space-y-2">
         <p className="text-xl font-bold">{nombre}</p>
-        <p className="text-lg font-bold ">Cantidad: {cantidad}</p>
+        <p className="text-lg font-bold text-lime-900">Cantidad: {cantidad}</p>
         <p className="text-lg font-bold text-amber-500">
           Precio: {formaterDinero(precio)}
         </p>
