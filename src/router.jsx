@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from './layouts/Layout';
 import AuthLayout from './layouts/AuthLayout';
 import Inicio from "./views/Inicio";
-import Login from "./views/Login";
-import Registro from "./views/registro";
+//import Login from "./views/Login";
+//import Registro from "./views/registro";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -22,11 +22,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/auth/login',
-                element: <Login />
+                //element: <Login />
             },
             {
                 path: '/auth/registro',
-                element: <Registro />
+                //element: <Registro />
             },
         ]
     }
